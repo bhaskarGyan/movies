@@ -1,15 +1,15 @@
 import { $fetch } from 'ohmyfetch'
-import LRU from 'lru-cache'
+// import LRU from 'lru-cache'
 import { hash as ohash } from 'ohash'
 import type { Credits, Media, MediaType, PageResult, Person } from '../types'
 
 // const apiBaseUrl = 'http://localhost:3001'
 const apiBaseUrl = 'https://movies-proxy.vercel.app'
 
-const cache = new LRU({
-  max: 500,
-  ttl: 2000 * 60 * 60, // 2 hour
-})
+// const cache = new LRU({
+//   max: 500,
+//   ttl: 2000 * 60 * 60, // 2 hour
+// })
 
 function _fetchTMDB(url: string, params: Record<string, string | number | undefined> = {}) {
   return $fetch(url, {
@@ -19,18 +19,10 @@ function _fetchTMDB(url: string, params: Record<string, string | number | undefi
 }
 
 export function fetchTMDB(url: string, params: Record<string, string | number | undefined> = {}): Promise<any> {
-  const hash = ohash([url, params])
-  if (!cache.has(hash)) {
-    cache.set(
-      hash,
-      _fetchTMDB(url, params)
-        .catch((e) => {
-          cache.delete(hash)
-          throw e
-        }),
-    )
-  }
-  return cache.get(hash)!
+return  _fetchTMDB(url, params)
+  .catch((e) => {
+    throw e
+  })
 }
 
 export function listMedia(type: MediaType, query: string, page: number): Promise<PageResult<Media>> {
