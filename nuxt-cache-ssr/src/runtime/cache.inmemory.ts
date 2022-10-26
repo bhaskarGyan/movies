@@ -11,7 +11,7 @@ interface InMemory {
     initialized:boolean
 }
 class InMemoryCache {
-    cached:any;
+    cache:any;
 
     constructor(options = {}) {
         // this.cache = new LRU({ ...DefaultOptionsLRU, ...options })
@@ -22,7 +22,6 @@ class InMemoryCache {
      
         // return this.cache.get(key)
         const result = await this.cached.get(key)
-        console.log(this.cached.store.keys())
         return result
     }
 
