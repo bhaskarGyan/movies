@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@pinia/nuxt',
     '@nuxt/image-edge',
-    ['./nuxt-cache-ssr',{
+    ['nuxt-cache-ssr',{
       enabled:true,
       LRU:{
         max:501,
