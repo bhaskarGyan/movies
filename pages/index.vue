@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { format, intervalToDuration } from 'date-fns'
 import type { MediaType } from '~/types'
 import { QUERY_LIST } from '~/constants/lists'
 
+const formattedDate = format(new Date(2014, 1, 11), 'yyyy-MM-dd')
+const duration = intervalToDuration({ start: 0, end: 1000 * 1000 })
 const route = useRoute()
 const type = $computed(() => route.params.type as MediaType || 'movie')
 

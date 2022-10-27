@@ -1,8 +1,19 @@
 import { $fetch } from 'ohmyfetch'
 import LRU from 'lru-cache'
 import { hash as ohash } from 'ohash'
+import { compareAsc, format } from 'date-fns'
 import type { Credits, Media, MediaType, PageResult, Person } from '../types'
 
+const formattedDate = format(new Date(2014, 1, 11), 'yyyy-MM-dd')
+
+const dates = [
+  new Date(1995, 6, 2),
+  new Date(1987, 1, 11),
+  new Date(1989, 6, 10),
+]
+dates.sort(compareAsc)
+
+console.log(formattedDate)
 // const apiBaseUrl = 'http://localhost:3001'
 const apiBaseUrl = 'https://movies-proxy.vercel.app'
 

@@ -9,18 +9,21 @@ export default defineNuxtConfig({
     '@unocss/nuxt',
     '@pinia/nuxt',
     '@nuxt/image-edge',
-    ['nuxt-cache-ssr',{
-      enabled:true,
-      LRU:{
-        max:501,
-        ttl:1000 * 60
+    ['nuxt-cache-ssr', {
+      enabled: true,
+      LRU: {
+        max: 501,
+        ttl: 1000 * 60,
       },
-      pages:[
+      pages: [
         '/movie',
-        '/tv'
-      ]
-    }]
+        '/tv',
+      ],
+    }],
   ],
+  build: {
+    transpile: ['date-fns'],
+  },
   experimental: {
     reactivityTransform: true,
     inlineSSRStyles: false,
