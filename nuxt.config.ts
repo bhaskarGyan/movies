@@ -18,6 +18,7 @@ export default defineNuxtConfig({
       pages: [
         '/movie',
         '/tv',
+        '/playground'
       ],
     }],
   ],
