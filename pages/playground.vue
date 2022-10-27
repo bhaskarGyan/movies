@@ -1,6 +1,8 @@
 <script setup>
-import { compareAsc, format } from 'date-fns'
+import DateFns from '@/utils/asyncDateFns'
 
+await DateFns.init()
+const { compareAsc, format } = DateFns.DateFns
 const formattedDate = format(new Date(2014, 1, 11), 'yyyy-MM-dd')
 
 const dates = [
@@ -13,7 +15,7 @@ dates.sort(compareAsc)
 
 <template>
   <div>
-    <v-carousel />
+    <lazy-v-carousel />
 
     <p> Date : {{ dates }}</p>
     <p>

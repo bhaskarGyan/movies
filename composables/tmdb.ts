@@ -1,19 +1,9 @@
 import { $fetch } from 'ohmyfetch'
 import LRU from 'lru-cache'
 import { hash as ohash } from 'ohash'
-import { compareAsc, format } from 'date-fns'
 import type { Credits, Media, MediaType, PageResult, Person } from '../types'
+import DateFns from '@/utils/asyncDateFns'
 
-const formattedDate = format(new Date(2014, 1, 11), 'yyyy-MM-dd')
-
-const dates = [
-  new Date(1995, 6, 2),
-  new Date(1987, 1, 11),
-  new Date(1989, 6, 10),
-]
-dates.sort(compareAsc)
-
-console.log(formattedDate)
 // const apiBaseUrl = 'http://localhost:3001'
 const apiBaseUrl = 'https://movies-proxy.vercel.app'
 
@@ -22,7 +12,20 @@ const cache = new LRU({
   ttl: 2000 * 60 * 60, // 2 hour
 })
 
-function _fetchTMDB(url: string, params: Record<string, string | number | undefined> = {}) {
+async function _fetchTMDB(url: string, params: Record<string, string | number | undefined> = {}) {
+  // Init Lazy utils Library inside async function on need basis
+  await DateFns.init()
+  const { compareAsc, format } = DateFns.DateFns
+  const formattedDate = format(new Date(2014, 1, 11), 'yyyy-MM-dd')
+
+  const dates = [
+    new Date(1995, 6, 2),
+    new Date(1987, 1, 11),
+    new Date(1989, 6, 10),
+  ]
+  dates.sort(compareAsc)
+  console.log('formattedDate : ', formattedDate)
+
   return $fetch(url, {
     baseURL: `${apiBaseUrl}/tmdb`,
     params,

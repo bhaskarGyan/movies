@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { format, intervalToDuration } from 'date-fns'
 import type { MediaType } from '~/types'
 import { QUERY_LIST } from '~/constants/lists'
+import DateFns from '@/utils/asyncDateFns'
 
+await DateFns.init()
+const { intervalToDuration, format } = DateFns.DateFns
 const formattedDate = format(new Date(2014, 1, 11), 'yyyy-MM-dd')
 const duration = intervalToDuration({ start: 0, end: 1000 * 1000 })
 const route = useRoute()
@@ -26,6 +28,8 @@ const AsyncWrapper = defineComponent(async (_, ctx) => {
       <template #default="{ item }">
         <NuxtLink :to="`/${type}/${item.id}`">
           <MediaHero :item="item" />
+          {{ duration }}
+          {{ formattedDate }}
         </NuxtLink>
       </template>
     </AsyncWrapper>
