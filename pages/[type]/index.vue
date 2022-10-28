@@ -39,11 +39,6 @@ const AsyncWrapper = defineComponent(async (_, ctx) => {
         </NuxtLink>
       </template>
     </AsyncWrapper>
-    <CarouselAutoQuery
-      v-for="query of queries"
-      :key="query.type + query.query"
-      :query="query"
-    />
     <TheFooter />
   </div>
 </template>
