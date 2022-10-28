@@ -59,8 +59,7 @@ export default defineNuxtConfig({
     }]
   ],
   experimental: {
-    reactivityTransform: true,
-    inlineSSRStyles: false,
+    reactivityTransform: true
   },
   runtimeConfig: {
     public: {
