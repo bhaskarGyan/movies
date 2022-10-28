@@ -38,7 +38,7 @@ export default defineNuxtConfig({
         // is removed.
         max: 500,
         // number of Millisecond to store this page in cache
-        ttl: 1000 * 60 // 1 Minute
+        ttl: 1000 * 60 * 180// 3 hour
       },
       pages: [
         '/movie',
