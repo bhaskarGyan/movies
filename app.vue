@@ -19,6 +19,16 @@ useHead({
     {
       rel: 'icon', type: 'image/webp', href: '/movies.webp',
     },
+    {
+      rel: 'preconnect',
+      href: 'https://movies-proxy.vercel.app',
+      crossorigin:true
+    },
+    {
+      rel: 'preconnect',
+      href: 'https://fonts.gstatic.com/',
+      crossorigin:true
+    }
   ],
 })
 </script>
